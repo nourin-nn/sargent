@@ -18,13 +18,10 @@ type-specific markers to assign cell identities.
 
 ## Availability 
 
-The newest stable version of **sargent** is available in 
-*[Bioconductor](https://bioconductor.org/packages/sargent)*. 
+The newest stable version of **sargent** is available in [Bioconductor][bioc]. 
 
 
 ## Installation
-
-Sargent is available from [Bioconductor][bioc] for R >=4.2.0.
 
 It can be installed from Bioconductor with:
 
