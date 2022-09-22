@@ -6,7 +6,7 @@
 sargent.html)
 
 <p align="center" width="100%">
-![Sargent logo](vignettes/sargent-logo.png)
+<img width="33%" src="vignettes/sargent-logo.png"> 
 </p>
 
 # Sargent
