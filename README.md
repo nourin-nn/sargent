@@ -37,9 +37,6 @@ If you wish to build a local version of the vignette use:
 BiocManager::install("sargent", build_vignettes=TRUE)
 ```
 
-This will also build the vignette and install all suggested dependencies (which
-aren't required for core functionality).
-
 
 ## Getting started
 
