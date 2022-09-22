@@ -45,26 +45,22 @@ aren't required for core functionality).
 
 
 ## Getting started
--------------------------------------------------------------------------------
 
 Once installed the best place to get started is the vignette. For most users
 the most convenient way to access this is online [here][vignette].
 
 
 ## Note
--------------------------------------------------------------------------------
 
 This Github repository is meant mostly for development. Use at your own risk.
 
 
 ## Contact
--------------------------------------------------------------------------------
 
 For help and questions please contact the [sargent's maintenance group](mailto:ni.nouri@gmail.com).
 
 
 ## Citing Sargent
--------------------------------------------------------------------------------
 
 If you use Sargent please cite our paper ["Nouri N. et al. A marker gene-based
 method for identifying the cell-type of origin from single-cell RNA sequencing
