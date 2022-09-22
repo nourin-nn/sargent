@@ -10,21 +10,19 @@ sargent.html)
 
 
 # Sargent
--------------------------------------------------------------------------------
+
 Identifying the cell type of origin for single cells is a key step in scRNA-seq
 data analysis. Sargent is a score-based method that uses gene set of cell
 type-specific markers to assign cell identities.
 
 
 ## Availability 
--------------------------------------------------------------------------------
 
 The newest stable version of **sargent** is available in 
 *[Bioconductor](https://bioconductor.org/packages/sargent)*. 
 
 
 ## Installation
--------------------------------------------------------------------------------
 
 Sargent is available from [Bioconductor][bioc] for R >=4.2.0.
 
