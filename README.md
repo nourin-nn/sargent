@@ -79,3 +79,4 @@ data. Genome Biology. 2023; doi:10.1186/s13059-017-1305-0"][paper].
 ```
 
 [vignette]: https://bioconductor.org/packages/devel/bioc/vignettes/sargent/inst/doc/Sargent-Vignette.html
+[bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
