@@ -5,8 +5,9 @@
 [![Bioc Build](https://bioconductor.org/shields/build/devel/bioc/sargent.svg)](https://bioconductor.org/packages/devel/bioc/html/
 sargent.html)
 
+<p align="center" width="100%">
 ![Sargent logo](vignettes/sargent-logo.png)
-
+</p>
 
 # Sargent
 
