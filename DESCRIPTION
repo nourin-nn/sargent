@@ -1,0 +1,37 @@
+Package: sargent
+Type: Package
+Version: 1.0.0
+Date: 2022-09-22
+Authors@R: 
+    c(person("Nima", "Nouri", role=c("cre", "aut"), 
+      email="ni.nouri@gmail.com", comment=c(ORCID="0000-0001-8348-5717")))
+Title: Single Cell Annotation
+Description: Single-cell RNA sequencing (scRNA-seq) experiments provide 
+    opportunities to peer into the complex tissues at single-cell resolution. 
+    However, accurate biological interpretation of scRNA-seq data is contingent 
+    on accurate annotation of cell-types. Sargent performs a normalize-free and 
+    cluster-free algorithm for rapidly identifying the cell-types of origin 
+    based on cell type-specific gene-markers. Sargent contains several functions 
+    for standalone pipeline analyses and workflow development. 
+License: AGPL-3
+URL: https://github.com/orgs/Sanofi-GitHub/pmcb-scb/sargent
+BugReports: https://github.com/orgs/Sanofi-GitHub/pmcb-scb/sargent/issues
+BuildVignettes: true
+VignetteBuilder: knitr
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0), BiocStyle,
+        Seurat
+Encoding: UTF-8
+biocViews: AnnotationWorkflow, Workflow, SingleCellWorkflow
+Depends: R (>= 4.2.0), ggplot2 (>= 3.3.4)
+Imports: ggdist, dplyr (>= 1.0), igraph (>= 1.0), 
+        Matrix, methods, rlang, stats, tibble, 
+        tidyr (>= 1.0), DescTools, pbapply, plyr
+RoxygenNote: 7.2.0
+Collate:
+    'Classes.R'
+    'Core.R'
+    'Data.R'
+    'Sargent.R'
+NeedsCompilation: no
+Packaged: 2022-09-22 10:20:41 UTC; biocbuild
+Config/testthat/edition: 3
