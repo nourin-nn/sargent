@@ -40,8 +40,7 @@ BiocManager::install("sargent", build_vignettes=TRUE)
 
 ## Getting started
 
-Once installed the best place to get started is the vignette. For most users
-the most convenient way to access this is online [here][vignette].
+Once installed the best place to get started is the [vignette][vignette].
 
 
 ## Note
