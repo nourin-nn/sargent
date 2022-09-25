@@ -55,9 +55,9 @@ For help and questions please contact the [sargent's maintenance group](mailto:n
 
 ## Citing Sargent
 
-If you use Sargent please cite our paper ["Nouri N. et al. A marker gene-based
+If you use Sargent please cite our paper: Nouri N. et al. "A marker gene-based
 method for identifying the cell-type of origin from single-cell RNA sequencing
-data. Genome Biology. 2023; doi:10.1186/s13059-017-1305-0"][paper].
+data", Journal Name, 2022, [doi:XXX][paper].
 
 ```
   @Article{,
@@ -73,3 +73,6 @@ data. Genome Biology. 2023; doi:10.1186/s13059-017-1305-0"][paper].
 
 [vignette]: https://bioconductor.org/packages/devel/bioc/vignettes/sargent/inst/doc/Sargent-Vignette.html
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
+[paper]: http://dx.doi.org/XX.XXXX/XXXXX
+
+[paper]: http://dx.doi.org/10.1186/s13059-017-1305-0
