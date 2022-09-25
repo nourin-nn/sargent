@@ -64,15 +64,13 @@ data", Journal Name, 2022, [doi:XXX][paper].
     author = {Nima Nouri},
     title = {A marker gene-based method for identifying the cell-type 
              of origin from single-cell RNA sequencing data},
-    journal = {Genome Biology},
-    year = {2023},
-    url = {http://dx.doi.org/10.1186/s13059-017-1305-0},
-    doi = {10.1186/s13059-017-1305-0},
+    journal = {Journal Name},
+    year = {2022},
+    url = {http://dx.doi.org/XX.XXXX/XXXXX},
+    doi = {XX.XXXX/XXXXX},
   }
 ```
 
 [vignette]: https://bioconductor.org/packages/devel/bioc/vignettes/sargent/inst/doc/Sargent-Vignette.html
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
 [paper]: http://dx.doi.org/XX.XXXX/XXXXX
-
-[paper]: http://dx.doi.org/10.1186/s13059-017-1305-0
