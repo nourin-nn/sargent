@@ -41,7 +41,7 @@ If you'd like the latest development version, install from this github directly:
 
 ```{r}
 library(devtools)
-install_github("Sanofi-GitHub/PMCB-Sargent")
+install_github("Sanofi-GitHub/PMCB-Sargent", build_vignettes=TRUE)
 ```
 
 
