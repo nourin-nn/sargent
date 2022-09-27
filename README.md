@@ -23,7 +23,7 @@ The newest stable version of **sargent** is available in [Bioconductor][bioc].
 
 ## Installation
 
-It can be installed from Bioconductor with:
+**sargent** can be installed from Bioconductor with:
 
 ```{r}
 if (!requireNamespace("BiocManager", quietly=TRUE))
