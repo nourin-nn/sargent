@@ -37,15 +37,17 @@ If you wish to build a local version of the vignette use:
 BiocManager::install("sargent", build_vignettes=TRUE)
 ```
 
+If you'd like the latest development version, install from this github directly:
+
+```{r}
+library(devtools)
+install_github("Sanofi-GitHub/PMCB-Sargent")
+```
+
 
 ## Getting started
 
 Once installed the best place to get started is the [vignette][vignette].
-
-
-## Note
-
-This Github repository is meant mostly for development. Use at your own risk.
 
 
 ## Contact
