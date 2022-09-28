@@ -23,25 +23,30 @@ The newest stable version of **sargent** is available in [Bioconductor][bioc].
 
 ## Installation
 
-**sargent** can be installed from Bioconductor with:
+**sargent** can be installed directly from this github with:
 
 ```{r}
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install("sargent")
+if (!require("devtools", quietly = TRUE))
+  install.packages("devtools")
+
+devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
+                         auth_token=[ask for a tocken](mailto:nima.nouri@sanofi.com), 
+                         build_vignettes=FALSE)
 ```
 
 If you wish to build a local version of the vignette use:
 
 ```{r}
-BiocManager::install("sargent", build_vignettes=TRUE)
-```
+if (!require("Seurat", quietly = TRUE))
+  install.packages("Seurat")
 
-If you'd like the latest development version, install from this github directly:
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("BiocStyle")
 
-```{r}
-library(devtools)
-install_github("Sanofi-GitHub/PMCB-Sargent", build_vignettes=TRUE)
+devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
+                         auth_token=[ask for a tocken](mailto:nima.nouri@sanofi.com), 
+                         build_vignettes=TRUE)
 ```
 
 
@@ -52,7 +57,7 @@ Once installed the best place to get started is the [vignette][vignette].
 
 ## Contact
 
-For help and questions please contact the [sargent's maintenance group](mailto:ni.nouri@gmail.com).
+For help and questions please contact the [sargent's maintenance group](mailto:nima.nouri@sanofi.com).
 
 
 ## Citing Sargent
