@@ -73,6 +73,6 @@ data", Journal Name, 2022, [doi:XX.XXXX/XXXXX][paper].
   }
 ```
 
-[vignette]: https://github.com/Sanofi-GitHub/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.Rmd
+[vignette]: https://github.com/Sanofi-GitHub/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.html
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
 [paper]: http://dx.doi.org/XX.XXXX/XXXXX

@@ -4,8 +4,5 @@
 .Ruserdata
 *.Rproj
 vignettes/*.R
-vignettes/*.html
-vignettes/*.pdf
-vignettes/*.tree
 /doc/
 /Meta/
