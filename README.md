@@ -25,7 +25,7 @@ if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 
 devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
-                         auth_token=[ask for a tocken](mailto:nima.nouri@sanofi.com), 
+                         auth_token="ask from sargent's maintenance team", 
                          build_vignettes=FALSE)
 ```
 
@@ -40,7 +40,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install("BiocStyle")
 
 devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
-                         auth_token=[ask for a tocken](mailto:nima.nouri@sanofi.com), 
+                         auth_token="ask from sargent's maintenance team", 
                          build_vignettes=TRUE)
 ```
 
@@ -52,7 +52,7 @@ Once installed the best place to get started is the [vignette][vignette].
 
 ## Contact
 
-For help and questions please contact the [sargent's maintenance group](mailto:nima.nouri@sanofi.com).
+For help and questions please contact the [sargent's maintenance team](mailto:nima.nouri@sanofi.com).
 
 
 ## Citing Sargent
