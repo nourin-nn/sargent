@@ -9,7 +9,7 @@ sargent.html)
 <img width="50%" src="vignettes/sargent-logo.png"> 
 </p>
 
-# SargentNIMA 
+# Sargent 
 
 Identifying the cell type of origin for single cells is a key step in scRNA-seq
 data analysis. Sargent is a score-based method that uses gene set of cell
