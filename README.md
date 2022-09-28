@@ -16,11 +16,6 @@ data analysis. Sargent is a score-based method that uses gene set of cell
 type-specific markers to assign cell identities.
 
 
-## Availability 
-
-The newest stable version of **sargent** is available in [Bioconductor][bioc]. 
-
-
 ## Installation
 
 **sargent** can be installed directly from this github with:
