@@ -855,7 +855,7 @@ fetchCelltype <- function(data, cells=NULL, form=c("gather", "spread")) {
     cstate <- data@cells_state
     x <- x %>%
       dplyr::mutate(yesno=1) %>%
-      dplyr::distinct %>%
+      dplyr::distinct() %>%
       tidyr::spread(key=celltype, value=yesno, fill=0) %>%
       dplyr::mutate(state=cstate[.$cell])
   }
@@ -922,7 +922,7 @@ fetchCell <- function(data, cell.types=NULL, form=c("gather", "spread")) {
       tibble::rownames_to_column(var="cell") %>%
       dplyr::rename(celltype=x) %>%
       dplyr::mutate(yesno=1) %>%
-      dplyr::distinct %>%
+      dplyr::distinct() %>%
       tidyr::spread(key=celltype, value=yesno, fill=0) %>%
       dplyr::mutate(state=cstate[.$cell])        
   }
