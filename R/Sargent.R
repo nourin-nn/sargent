@@ -61,7 +61,8 @@ NULL
 
 # Package loading actions
 .onAttach <- function(libname, pkgname) {
-    msg <- paste("sargent package. Copyrights in inst/COPYRIGHTS.",
+    msg <- paste("sargent package.", 
+                 "License and Copyrights in file LICENSE and COPYRIGHTS.",
                  sep="\n")
     packageStartupMessage(msg)
 }
