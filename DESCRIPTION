@@ -13,7 +13,8 @@ Description: Single-cell RNA sequencing (scRNA-seq) experiments provide
     cluster-free algorithm for rapidly identifying the cell-types of origin 
     based on cell type-specific gene-markers. Sargent contains several functions 
     for standalone pipeline analyses and workflow development. 
-License: AGPL-3
+License: file LICENSE
+Copyrights: file COPYRIGHTS
 URL: https://github.com/orgs/Sanofi-GitHub/pmcb-scb/sargent
 BugReports: https://github.com/orgs/Sanofi-GitHub/pmcb-scb/sargent/issues
 BuildVignettes: true

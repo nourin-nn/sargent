@@ -61,8 +61,7 @@ NULL
 
 # Package loading actions
 .onAttach <- function(libname, pkgname) {
-    msg <- paste("sargent package, a Sanofi production.",
-                 "Confidential: internal use only.",
+    msg <- paste("sargent package. Copyrights in inst/COPYRIGHTS.",
                  sep="\n")
     packageStartupMessage(msg)
 }
