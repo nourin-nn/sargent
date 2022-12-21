@@ -66,7 +66,6 @@ sargentAnnotation <- function(gex, gene.sets,
   chk <- checks(gex=gex, gsets=gene.sets)
   if (chk != TRUE) stop(chk)
   # ===================================
-  message("", sep = "\n")
   message("+++++++++++++++++++++++++++++++++++")
   dims_i <- dim(gex)
   if (!is.null(cells)) {
