@@ -1,9 +1,5 @@
 [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Bioc Years](https://bioconductor.org/shields/years-in-bioc/sargent.svg)](https://bioconductor.org/packages/devel/bioc/html/sargent.html)
-[![Bioc Stats](https://bioconductor.org/shields/downloads/sargent.svg)](https://bioconductor.org/packages/devel/bioc/html/sargent.html)
-[![Bioc Build](https://bioconductor.org/shields/build/devel/bioc/sargent.svg)](https://bioconductor.org/packages/devel/bioc/html/
-sargent.html)
 
 <p align="center" width="100%">
 <img width="50%" src="vignettes/sargent-logo.png"> 
