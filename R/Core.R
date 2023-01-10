@@ -446,7 +446,7 @@ packingRes <- function(gex, gsets, assigns.vec) {
   ls1 <- split(names(assigns.vec), as.vector(assigns.vec))
   celltypes <- unique(as.vector(assigns.vec))
   genes <- unique(unlist(gsets, use.names = FALSE)) 
-  gex <- gex[rownames(gex) %in% genes, ]
+  gex <- gex[rownames(gex) %in% genes, , drop = FALSE]
   # gex.cpm <- Log1pNormGex(mat = gex)
   # gex.cpm <- log1p(1e6*t(t(gex)/colSums(gex))) ***
   if (!is.matrix(gex)) {
