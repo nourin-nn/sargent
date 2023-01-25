@@ -235,10 +235,10 @@ annotByMultipleGeneSets <- function(cells.scrs, cells.state,
     assigns <- smooth.res$assigns.smooth
     cells.state <- smooth.res$cells.state
     # ===================================  
-    stopifnot(all(names(cells.state[!grepl("classified", cells.state)]) %in% 
+    stopifnot(all(names(cells.state[!grepl("^classified", cells.state)]) %in% 
                       names(assigns[assigns == "unclassified"])))
     stopifnot(all(names(assigns[assigns == "unclassified"]) %in% 
-                      names(cells.state[!grepl("classified", cells.state)])))
+                      names(cells.state[!grepl("^classified", cells.state)])))
   }
   # ===================================
   # returns 
