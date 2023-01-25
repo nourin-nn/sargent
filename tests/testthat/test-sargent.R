@@ -15,6 +15,6 @@ test_that("test sargentAnnotation single gene sts", {
                              gene.sets=list("B"=x$gene.sets$B), 
                              score.threshold=0.25)
   srgnt_tst <- setNames(c(22, 78), 
-                        c("B", "TBD"))
+                        c("B", "unclassified"))
   expect_equal(print(srgnt), srgnt_tst)
 })

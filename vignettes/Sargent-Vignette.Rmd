@@ -128,7 +128,7 @@ standard deviations of the mean. Smaller values for `gini.sigma` will increase
 the stringency in confidence of assignments. Second, whether the gini-index is
 less than `gini.min` (adjustable). Statistically, a gini index below 0.5
 (default) does not represent a severe dispersion, suggesting a poor annotation.
-Such ambiguous calls remain unclassified and are relabeled as `TBD`s.
+Such ambiguous calls remain unclassified and are relabeled as `unclassified`s.
 
 **Smoothing**: One last step is k-nearest neighbor smoothing (optional input).
 This step is designed to smoothen annotations by aggregating information from
@@ -307,7 +307,7 @@ demo, we seek to identify regulatory cells among annotated T cells. Again, the
 first step is to develop a recipe of signature genes. Then, `sargent` calculates
 assignment scores according to the gene-set. The assignment score distribution
 tends to be bi-modal, where the lower mode represents cells with low expression
-of signature genes (`TBD`s) and the higher mode represents those with high
+of signature genes (`unclassified`s) and the higher mode represents those with high
 expression of signature genes (`REG`s in this scenario). Therefore, a reasonable
 choice of score threshold is one that separates these two modes. Investigators
 can use `only.score` argument from `sargentAnnotation` to first visualize the

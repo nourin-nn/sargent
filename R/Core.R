@@ -221,8 +221,8 @@ annotByMultipleGeneSets <- function(cells.scrs, cells.state,
   cells.state <- trim.res$cells.state
   # ===================================
   stopifnot(all(names(cells.state[cells.state != "classified"]) %in% 
-                    names(assigns[assigns == "TBD"])))
-  stopifnot(all(names(assigns[assigns == "TBD"]) %in% 
+                    names(assigns[assigns == "unclassified"])))
+  stopifnot(all(names(assigns[assigns == "unclassified"]) %in% 
                     names(cells.state[cells.state != "classified"])))
   # ===================================
   # smoothing
@@ -236,8 +236,8 @@ annotByMultipleGeneSets <- function(cells.scrs, cells.state,
     cells.state <- smooth.res$cells.state
     # ===================================  
     stopifnot(all(names(cells.state[!grepl("classified", cells.state)]) %in% 
-                      names(assigns[assigns == "TBD"])))
-    stopifnot(all(names(assigns[assigns == "TBD"]) %in% 
+                      names(assigns[assigns == "unclassified"])))
+    stopifnot(all(names(assigns[assigns == "unclassified"]) %in% 
                       names(cells.state[!grepl("classified", cells.state)])))
   }
   # ===================================
@@ -256,7 +256,7 @@ annotBySingleGeneSet <- function(cells.scrs, score.thr=NULL) {
   assigns <- setNames(rep(rownames(cells.scrs), length(assigns)), assigns)
   # ===================================
   not_assigns <- setdiff(colnames(cells.scrs), names(assigns)) 
-  not_assigns <- setNames(rep("TBD", length(not_assigns)), not_assigns)
+  not_assigns <- setNames(rep("unclassified", length(not_assigns)), not_assigns)
   assigns <- c(assigns, not_assigns)
   # print(table(assigns))
   stopifnot(length(assigns) == dim(cells.scrs)[2])
@@ -278,24 +278,24 @@ trimAssignment <- function(cells.scrs, assigns.vec, cells.state,
   gini.thr <- mean(gini.score, na.rm=TRUE) - gini.sigma*sd(gini.score, na.rm=TRUE)
   # ===================================
   x <- names(which(gini.score < gini.thr & gini.score < gini.min))
-  assigns.vec[x] <- "TBD"
+  assigns.vec[x] <- "unclassified"
   cells.state[x] <- "low-gini"
   # ===================================
   x <- names(which(is.na(gini.score)))
-  assigns.vec[x] <- "TBD" 
+  assigns.vec[x] <- "unclassified" 
   cells.state[x] <- "no-marker"
   # ===================================
   x <- names(which(colSums(cells.scrs) == 0))
-  assigns.vec[x] <- "TBD"
+  assigns.vec[x] <- "unclassified"
   cells.state[x] <- "no-marker"
   # ===================================
   x <- names(which(gini.score == 0))
-  assigns.vec[x] <- "TBD"   
+  assigns.vec[x] <- "unclassified"   
   cells.state[x] <- "multiplet"
   # ===================================
   x <- names(which(apply(cells.scrs, 2, function(x) sum(x == max(x))) > 1))
   x <- x[!is.na(gini.score[x])]
-  assigns.vec[x] <- "TBD"
+  assigns.vec[x] <- "unclassified"
   cells.state[x] <- "multiplet"
   # ===================================
   # print(table(assigns.vec))
@@ -420,11 +420,11 @@ smoothAssigns <- function(adjacent.mtx, assigns.vec,
     assigns.smooth <- assigns.vec
     assigns.smooth[switches] <- verdicts[switches]
     # ===================================
-    logicx <- switches[verdicts[switches] != "TBD"]
+    logicx <- switches[verdicts[switches] != "unclassified"]
     cells.state[logicx] <- "classified-smooth"
     
-    logicx <- switches[verdicts[switches] == "TBD"]
-    cells.state[logicx] <- "tbd-smooth"
+    logicx <- switches[verdicts[switches] == "unclassified"]
+    cells.state[logicx] <- "unclassified-smooth"
     # ===================================
     # print(table(assigns.smooth))
     # print(table(cells.state))  

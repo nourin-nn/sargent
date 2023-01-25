@@ -17,8 +17,8 @@ setClassUnion("NumNULL", members=c("numeric", "NULL"))
 #'   \itemize{
 #'            \item    \code{classified}: annotated cell. 
 #'            \item    \code{classified-smooth}: annotated cell post-smoothing. 
-#'            \item    \code{TBD}: unannotated cell. 
-#'            \item    \code{TBD-smooth}: unannotated cell post-smoothing. 
+#'            \item    \code{unclassified}: unannotated cell. 
+#'            \item    \code{unclassified-smooth}: unannotated cell post-smoothing. 
 #'            }
 #' @slot  cells_score       numeric matrix of scores (gene-sets as rows, cells
 #'                          as columns).
