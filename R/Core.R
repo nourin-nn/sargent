@@ -70,12 +70,12 @@ sargentAnnotation <- function(gex, gene.sets,
   dims_i <- dim(gex)
   if (!is.null(cells)) {
     # keep cells
-    gex <- gex[, colnames(gex) %in% cells]
+    gex <- gex[, colnames(gex) %in% cells, drop = FALSE]
     dims_f <- dim(gex)
     message(dims_i[2] - dims_f[2], " cell(s) removed")
     # remove any genes with zero expression
     if (any(rowSums(gex) == 0)) {
-      gex <- gex[rowSums(gex) != 0, ]
+      gex <- gex[rowSums(gex) != 0, , drop = FALSE]
       dims_f <- dim(gex)
       message(dims_i[1] - dims_f[1], 
               " gene(s) removed. No expression across cells.")
@@ -319,7 +319,7 @@ scoreCells <- function(mat, gsets, gsets.neg=NULL) {
   # ===================================
   # sum(cumsum(head(y, maxrank) %in% gns)) 
   cells.scrs <- pblapply(cols_ls, function(x){
-    apply(mat[, x], 2, function(y){
+    apply(mat[, x, drop = FALSE], 2, function(y){
       y <- names(rev(sort(y[y > 0])))
       vapply(gsets, function(gns) {
         sum(cumsum(y %in% gns)) 
@@ -330,7 +330,7 @@ scoreCells <- function(mat, gsets, gsets.neg=NULL) {
   # sum(cumsum(head(y, maxrank) %in% gns)) 
   if (!is.null(gsets.neg)) {
     pnlty.scrs <- pblapply(cols_ls, function(x){
-      apply(mat[, x], 2, function(y){
+      apply(mat[, x, drop = FALSE], 2, function(y){
         y <- names(rev(sort(y[y > 0])))
         vapply(gsets.neg, function(gns){
           sum(cumsum(y %in% gns)) 
@@ -340,7 +340,7 @@ scoreCells <- function(mat, gsets, gsets.neg=NULL) {
     # ===================================
     # sum(head(y, maxrank) %in% gns)
     bonus.scrs <- pblapply(cols_ls, function(x){
-      apply(mat[, x], 2, function(y){
+      apply(mat[, x, drop = FALSE], 2, function(y){
         y <- names(y[y == 0])
         vapply(gsets.neg, function(gns){
           sum(y %in% gns)
