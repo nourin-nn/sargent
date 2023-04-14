@@ -7,9 +7,9 @@
 
 # Sargent 
 
-Identifying the cell type of origin for single cells is a key step in scRNA-seq
-data analysis. Sargent is a score-based method that uses gene set of cell
-type-specific markers to assign cell identities.
+Sargent is a transformation- and cluster-free cell-type annotation method that 
+operates at individual cell resolution by applying a scoring system to scRNA-seq 
+data based on sets of marker genes associated with cell types.
 
 
 ## Installation
@@ -20,8 +20,7 @@ type-specific markers to assign cell identities.
 if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 
-devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
-                         auth_token="ask from sargent's maintenance team", 
+devtools::install_github("Sanofi-Public/PMCB-Sargent", 
                          build_vignettes=FALSE)
 ```
 
@@ -35,8 +34,7 @@ if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("BiocStyle")
 
-devtools::install_github("Sanofi-GitHub/PMCB-Sargent", 
-                         auth_token="ask from sargent's maintenance team", 
+devtools::install_github("Sanofi-Public/PMCB-Sargent", 
                          build_vignettes=TRUE)
 ```
 
@@ -55,20 +53,20 @@ For help and questions please contact the [sargent's maintenance team](mailto:ni
 
 If you use Sargent please cite our paper: Nouri N. et al. "A marker gene-based
 method for identifying the cell-type of origin from single-cell RNA sequencing
-data", Journal Name, 2022, [doi:XX.XXXX/XXXXX][paper].
+data", MethodsX, 2023, [doi:XX.XXXX/XXXXX][paper].
 
 ```
   @Article{,
-    author = {Nima Nouri},
+    author = {Nima Nouri et al.},
     title = {A marker gene-based method for identifying the cell-type 
              of origin from single-cell RNA sequencing data},
-    journal = {Journal Name},
-    year = {2022},
+    journal = {MethodsX},
+    year = {2023},
     url = {http://dx.doi.org/XX.XXXX/XXXXX},
     doi = {XX.XXXX/XXXXX},
   }
 ```
 
-[vignette]: https://github.com/Sanofi-GitHub/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.Rmd
+[vignette]: https://github.com/Sanofi-Public/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.Rmd
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
 [paper]: http://dx.doi.org/XX.XXXX/XXXXX
