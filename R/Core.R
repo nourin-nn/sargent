@@ -63,8 +63,10 @@ sargentAnnotation <- function(gex, gene.sets,
     start_time <- Sys.time()
   # ===================================
   # checks
-  chk <- checks(gex=gex, gsets=gene.sets)
+  chk <- stop.checks(gex=gex, gsets=gene.sets)
   if (chk != TRUE) stop(chk)
+  chk <- warning.checks(gsets=gene.sets)
+  if (chk != TRUE) warning(chk)
   # ===================================
   message("+++++++++++++++++++++++++++++++++++")
   dims_i <- dim(gex)
@@ -101,7 +103,7 @@ sargentAnnotation <- function(gex, gene.sets,
   }
   # ===================================
   # checks
-  chk <- checks(gex=gex, gsets=gene.sets)
+  chk <- stop.checks(gex=gex, gsets=gene.sets)
   if (chk != TRUE) stop(chk)
   # ===================================
   cells.scrs <- scoreCells(mat=gex, 
@@ -167,7 +169,7 @@ sargentAnnotation <- function(gex, gene.sets,
 
 
 # Helper function for checkning inputs
-checks <- function(gex, gsets) {
+stop.checks <- function(gex, gsets) {
     if (is.null(colnames(gex))) {
         msg <- "No cell id. gex column names are empty."
         return(msg)
@@ -184,10 +186,26 @@ checks <- function(gex, gsets) {
         return(msg)
     }
     # ===================================  
-    obs.gsets <- lapply(gsets, function(x){ 
-        x[x %in% rownames(gex)]
-    })
-    df <- plyr::ldply(obs.gsets, rbind) %>%
+    # obs.gsets <- lapply(gsets, function(x){ 
+    #     x[x %in% rownames(gex)]
+    # })
+    # df <- plyr::ldply(obs.gsets, rbind) %>%
+    #     tibble::column_to_rownames(var = ".id")
+    # dpcts <- rownames(df)[which(duplicated(df) | duplicated(df, fromLast = TRUE))]
+    # if (length(dpcts) > 0) {
+    #     msg <- paste(dpcts, collapse=", ")
+    #     msg <- paste("Identical gene sets. Check:", msg, sep=" ")
+    #     return(msg)
+    # }
+    # ===================================  
+    # Return TRUE if all checks pass
+    return(TRUE)
+}
+
+
+# Helper function for checkning inputs
+warning.checks <- function(gsets) {
+    df <- plyr::ldply(gsets, rbind) %>%
         tibble::column_to_rownames(var = ".id")
     dpcts <- rownames(df)[which(duplicated(df) | duplicated(df, fromLast = TRUE))]
     if (length(dpcts) > 0) {
