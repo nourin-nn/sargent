@@ -6,6 +6,6 @@ citEntry(entry = "Article",
          journal  = "MethodsX",
          year     = "2023",
          volume   = "10",
-         number   = "",
+         number   = "2215-0161",
          pages    = "102196",
          textVersion = "Nouri N. A marker gene-based method for identifying the cell-type of origin from single-cell RNA sequencing data. MethodsX. 2023; doi:10.1016/j.mex.2023.102196")
