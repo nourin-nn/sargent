@@ -51,8 +51,8 @@ For help and questions please contact the [sargent's maintenance team](mailto:ni
 
 ## Citing Sargent
 
-If you use Sargent please cite our paper: Nouri N. et al. "A marker gene-based
-method for identifying the cell-type of origin from single-cell RNA sequencing
+If you use Sargent please cite our paper: Nouri N. et al. "A marker gene-based 
+method for identifying the cell-type of origin from single-cell RNA sequencing 
 data", MethodsX, 2023, [doi:j.mex.2023.102196][paper].
 
 ```
