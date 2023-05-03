@@ -28,7 +28,7 @@ vignette gives an overview and introduction to Sargent’s functionality.
 
 # Installation
 
-Sargent can be installed from github:
+Sargent can be installed from GitHub:
 
 ```{r install-sargent, eval = FALSE}
 if (!require("devtools", quietly = TRUE))
@@ -36,6 +36,20 @@ if (!require("devtools", quietly = TRUE))
 
 devtools::install_github("Sanofi-Public/PMCB-Sargent", 
                          build_vignettes=FALSE)
+```
+
+If you wish to build a local version of the vignette use:
+
+```{r vignette-sargent, eval = FALSE}
+if (!require("Seurat", quietly = TRUE))
+  install.packages("Seurat")
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("BiocStyle")
+
+devtools::install_github("Sanofi-Public/PMCB-Sargent", 
+                         build_vignettes=TRUE)
 ```
 
 # Setup
