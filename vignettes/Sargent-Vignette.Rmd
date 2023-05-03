@@ -28,12 +28,14 @@ vignette gives an overview and introduction to Sargent’s functionality.
 
 # Installation
 
-Sargent can be installed from Bioconductor:
+Sargent can be installed from github:
 
 ```{r install-sargent, eval = FALSE}
-if (!require("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install("sargent")
+if (!require("devtools", quietly = TRUE))
+  install.packages("devtools")
+
+devtools::install_github("Sanofi-Public/PMCB-Sargent", 
+                         build_vignettes=FALSE)
 ```
 
 # Setup
