@@ -1,6 +1,6 @@
 ---
 title: 'Introduction to Sargent'
-author: "Nima Nouri and Katherine Norwood"
+author: "Nima Nouri"
 date: '`r BiocStyle::doc_date()`'
 package: "`r BiocStyle::pkg_ver('sargent')`"
 bibliography: ref.bib
