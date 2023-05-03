@@ -53,7 +53,7 @@ For help and questions please contact the [sargent's maintenance team](mailto:ni
 
 If you use Sargent please cite our paper: Nouri N. et al. "A marker gene-based 
 method for identifying the cell-type of origin from single-cell RNA sequencing 
-data", MethodsX, 2023, [doi:j.mex.2023.102196][paper].
+data", MethodsX, 2023, [doi:10.1016/j.mex.2023.102196][paper].
 
 ```
   @Article{,
@@ -62,11 +62,11 @@ data", MethodsX, 2023, [doi:j.mex.2023.102196][paper].
              from single-cell RNA sequencing data},
     journal = {MethodsX},
     year = {2023},
-    url = {https://doi.org/10.1016/j.mex.2023.102196},
-    doi = {j.mex.2023.102196},
+    url = {https://www.sciencedirect.com/science/article/pii/S2215016123001966},
+    doi = {10.1016/j.mex.2023.102196},
   }
 ```
 
 [vignette]: https://github.com/Sanofi-Public/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.Rmd
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
-[paper]: https://doi.org/10.1016/j.mex.2023.102196
+[paper]: https://www.sciencedirect.com/science/article/pii/S2215016123001966
