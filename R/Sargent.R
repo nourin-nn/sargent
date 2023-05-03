@@ -39,7 +39,7 @@
 #' \enumerate{
 #'   \item  Nima Nouri, et al.: A marker gene based method for identifying the 
 #'            cell-type of origin from single-cell RNA sequencing data. 
-#'            <journal>. <year> <issue>(<volume>):<page-page>.
+#'            <MethodsX>. <2023> <2215-0161>(<10>):<102196>.
 #' }
 #'
 #' @import      ggplot2
