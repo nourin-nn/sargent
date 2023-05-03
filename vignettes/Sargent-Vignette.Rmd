@@ -137,7 +137,7 @@ This step is designed to smoothen annotations by aggregating information from
 cells with similar genome-wide expression profiles (neighbors). Smoothing is
 performed by first identifying cells with a minimum of `n.neighbors`
 nearest-neighbors (default is 10). Then, if more than 50% of neighbors reach a
-consensus on their labels, the surrounding cell will be relabeled according to
+consensus on their labels, the surrounded cell will be relabeled according to
 the neighbors' verdict. Investigators can build such matrix using standard
 `Seurat` pipeline with the following commands:
 
@@ -186,7 +186,7 @@ in a table:
 table(predicted=fetchAssignment(srgnt), truth=mt.data$celltype)
 ```
 
-`sargent` contains a pair of stand-alone functions to investigate the
+`sargent` contains a set of stand-alone functions to investigate the
 performance of its annotation algorithm. For instance, we use `fetchDensityPlot`
 function to visualize the distribution of dispersion measures. Below we can see
 that assignments have high gini-index (a gini-index above 0.5 represents severe
