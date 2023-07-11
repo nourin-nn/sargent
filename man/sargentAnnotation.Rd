@@ -23,13 +23,19 @@ where rows are genes and columns are cells. The
 matrix can be stored in sparse format (e.g., 
 \code{count} slot from a \code{Seurat} object).}
 
-\item{gene.sets}{A list of gene-markers. Each element of list is
-named by the cell-type and contains a vector of 
-associated gene-markers.}
+\item{gene.sets}{A list of gene markers. Each element of the list
+is named by the cell type and contains a vector
+of associated gene markers. You can also specify
+positive and negative weights `[-1, 1]` to each
+marker by adding an asterisk (*) sign to genes in
+the signature, for example, `0.5*Gene_X`, or 
+`-0.75*Gene_Y`.}
 
-\item{gene.sets.neg}{A list of gene-markers. Each element of list is
-named by the cell-type and contains a vector of 
-associated gene-markers.}
+\item{gene.sets.neg}{A list of negatvive gene markers. Each element of
+the list is named by the cell type and contains a
+vector of associated gene markers. Note: this argument
+is only available for legacy purposes. Please use
+the weighing option in `gene.sets`.}
 
 \item{cells}{Vector of cells to annotate (default is all
 cells).}

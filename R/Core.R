@@ -14,12 +14,18 @@ NULL
 #'                             where rows are genes and columns are cells. The 
 #'                             matrix can be stored in sparse format (e.g., 
 #'                             \code{count} slot from a \code{Seurat} object).
-#' @param    gene.sets         A list of gene-markers. Each element of list is
-#'                             named by the cell-type and contains a vector of 
-#'                             associated gene-markers.
-#' @param    gene.sets.neg     A list of gene-markers. Each element of list is
-#'                             named by the cell-type and contains a vector of 
-#'                             associated gene-markers.
+#' @param    gene.sets         A list of gene markers. Each element of the list
+#'                             is named by the cell type and contains a vector
+#'                             of associated gene markers. You can also specify
+#'                             positive and negative weights `[-1, 1]` to each
+#'                             marker by adding an asterisk (*) sign to genes in
+#'                             the signature, for example, `0.5*Gene_X`, or 
+#'                             `-0.75*Gene_Y`.
+#' @param    gene.sets.neg     A list of negatvive gene markers. Each element of
+#'                             the list is named by the cell type and contains a
+#'                             vector of associated gene markers. Note: this argument
+#'                             is only available for legacy purposes. Please use
+#'                             the weighing option in `gene.sets`.
 #' @param    gini.min          A numeric scalar, between 0 and 1, specifying the
 #'                             minimum threshold on the gini index
 #' @param    gini.sigma        A numeric scalar specifying the number of sigmas
@@ -61,107 +67,122 @@ sargentAnnotation <- function(gex, gene.sets,
                               adjacent.mtx=NULL, n.neighbors=10,
                               score.threshold=NULL, only.score=FALSE) {
     start_time <- Sys.time()
-  # ===================================
-  # checks
-  chk <- stop.checks(gex=gex, gsets=gene.sets)
-  if (chk != TRUE) stop(chk)
-  chk <- warning.checks(gsets=gene.sets)
-  if (chk != TRUE) warning(chk)
-  # ===================================
-  message("+++++++++++++++++++++++++++++++++++")
-  dims_i <- dim(gex)
-  if (!is.null(cells)) {
-    # keep cells
-    gex <- gex[, colnames(gex) %in% cells, drop = FALSE]
-    dims_f <- dim(gex)
-    message(dims_i[2] - dims_f[2], " cell(s) removed")
-    # remove any genes with zero expression
-    if (any(rowSums(gex) == 0)) {
-      gex <- gex[rowSums(gex) != 0, , drop = FALSE]
-      dims_f <- dim(gex)
-      message(dims_i[1] - dims_f[1], 
-              " gene(s) removed. No expression across cells.")
-    }
-  }
-  # ===================================
-  message("A matrix with ", 
-          format(dim(gex)[1], big.mark=","), " genes and ", 
-          format(dim(gex)[2], big.mark=","), " cells.")
-  cells.state <- setNames(rep("classified", dim(gex)[2]), colnames(gex))
-  # ===================================
-  # checks gene sets
-  n_gsts <- length(gene.sets)
-  message("gene markers: ")
-  for (i in seq_along(gene.sets)) {
-    gns <- gene.sets[[i]]
-    message("* ", names(gene.sets)[i], ": ", sum(gns %in% rownames(gex)), "/", 
-            length(gns), " gene(s) observed.")
-    if (sum(gns %in% rownames(gex)) < length(gns)) {
-      msg <- paste(gns[!gns %in% rownames(gex)], collapse=", ")
-      message("-- Warning: gene(s) not present in the data: ", msg)
-    }
-  }
-  # ===================================
-  # checks
-  chk <- stop.checks(gex=gex, gsets=gene.sets)
-  if (chk != TRUE) stop(chk)
-  # ===================================
-  cells.scrs <- scoreCells(mat=gex, 
-                           gsets=gene.sets,
-                           gsets.neg=gene.sets.neg) 
-  # ===================================
-  if (only.score) {
-    # returns
-    score_obj <- new("scoreObject",
-                     cells_score=cells.scrs)
+    # ===================================
+    witsets <- lapply(gene.sets, function(gns){
+        combs <- strsplit(gns, split = "\\*")
+        sapply(combs, function(x) {
+            ifelse(length(x) == 2, return(as.numeric(x[1])), 1)
+        })
+    })
+    gene.sets <- lapply(gene.sets, function(gns){
+        combs <- strsplit(gns, split = "\\*")
+        sapply(combs, function(x) {
+            ifelse(length(x) == 2, return(x[2]), x)
+        })
+    })
+    stopifnot(all(lengths(witsets) == lengths(gene.sets)))
+    # ===================================
+    # checks
+    chk <- stop.checks(gex=gex, gsets=gene.sets)
+    if (chk != TRUE) stop(chk)
+    chk <- warning.checks(gsets=gene.sets)
+    if (chk != TRUE) warning(chk)
+    # ===================================
     message("+++++++++++++++++++++++++++++++++++")
-    return(score_obj)
-  }
-  # ===================================
-  if (n_gsts > 1) {
-    helper.res <- annotByMultipleGeneSets(cells.scrs=cells.scrs, 
-                                          cells.state=cells.state,
-                                          gini.min=gini.min, 
-                                          gini.sigma=gini.sigma,
-                                          adjacent.mtx=adjacent.mtx, 
-                                          n.neighbors=n.neighbors)
-    assigns <- helper.res$assigns
-    gini.thr <- helper.res$gini.thr
-    gini.score <- helper.res$gini.score
-    cells.state <- helper.res$cells.state
-  } else {
-    helper.res <- annotBySingleGeneSet(cells.scrs=cells.scrs, 
-                                       score.thr=score.threshold)
-    assigns <- helper.res$assigns
-  }
-  # =================================== 
-  # print(table(assigns))
-  stopifnot(length(assigns) == dim(gex)[2])
-  # ===================================
-  helper.res <- packingRes(gex=gex, gsets=gene.sets, assigns.vec=assigns)
-  # =================================== 
-  if (n_gsts == 1) {
-    gini.score <- NULL
-    gini.min <- NULL
-  }
-  # ===================================  
-  # returns
-  sargent_obj <- new("sargentObject",
-                     cells=colnames(gex),
-                     cells_type=helper.res$assigns.ls,
-                     cells_state=cells.state,
-                     cells_score=cells.scrs,
-                     cells_gini=gini.score,
-                     gini_min=gini.min,
-                     threshold=ifelse(n_gsts > 1, gini.thr, score.threshold),
-                     celltype_summary=helper.res$summ.df)
-  # ===================================  
-  end_time <- Sys.time()
-  dt <- round(as.numeric(difftime(end_time, start_time, units = "mins")), 2)
-  message(paste("time:", dt, "min"))
-  message("+++++++++++++++++++++++++++++++++++")
-  # ===================================  
-  return(sargent_obj)
+    dims_i <- dim(gex)
+    if (!is.null(cells)) {
+        # keep cells
+        gex <- gex[, colnames(gex) %in% cells, drop = FALSE]
+        dims_f <- dim(gex)
+        message(dims_i[2] - dims_f[2], " cell(s) removed")
+        # remove any genes with zero expression
+        if (any(rowSums(gex) == 0)) {
+            gex <- gex[rowSums(gex) != 0, , drop = FALSE]
+            dims_f <- dim(gex)
+            message(dims_i[1] - dims_f[1], 
+                    " gene(s) removed. No expression across cells.")
+        }
+    }
+    # ===================================
+    message("A matrix with ", 
+            format(dim(gex)[1], big.mark=","), " genes and ", 
+            format(dim(gex)[2], big.mark=","), " cells.")
+    cells.state <- setNames(rep("classified", dim(gex)[2]), colnames(gex))
+    # ===================================
+    # checks gene sets
+    n_gsts <- length(gene.sets)
+    message("gene markers: ")
+    for (i in seq_along(gene.sets)) {
+        gns <- gene.sets[[i]]
+        message("* ", names(gene.sets)[i], ": ", sum(gns %in% rownames(gex)), "/", 
+                length(gns), " gene(s) observed.")
+        if (sum(gns %in% rownames(gex)) < length(gns)) {
+            msg <- paste(gns[!gns %in% rownames(gex)], collapse=", ")
+            message("-- Warning: gene(s) not present in the data: ", msg)
+        }
+    }
+    # ===================================
+    # checks
+    chk <- stop.checks(gex=gex, gsets=gene.sets)
+    if (chk != TRUE) stop(chk)
+    # ===================================
+    cells.scrs <- scoreCells(mat=gex, 
+                             gsets=gene.sets,
+                             witsets=witsets,
+                             gsets.neg=gene.sets.neg) 
+    # ===================================
+    if (only.score) {
+        # returns
+        score_obj <- new("scoreObject",
+                         cells_score=cells.scrs)
+        message("+++++++++++++++++++++++++++++++++++")
+        return(score_obj)
+    }
+    # ===================================
+    if (n_gsts > 1) {
+        helper.res <- annotByMultipleGeneSets(cells.scrs=cells.scrs, 
+                                              cells.state=cells.state,
+                                              gini.min=gini.min, 
+                                              gini.sigma=gini.sigma,
+                                              adjacent.mtx=adjacent.mtx, 
+                                              n.neighbors=n.neighbors)
+        assigns <- helper.res$assigns
+        gini.thr <- helper.res$gini.thr
+        gini.score <- helper.res$gini.score
+        cells.state <- helper.res$cells.state
+    } else {
+        helper.res <- annotBySingleGeneSet(cells.scrs=cells.scrs, 
+                                           score.thr=score.threshold)
+        assigns <- helper.res$assigns
+    }
+    # =================================== 
+    # print(table(assigns))
+    stopifnot(length(assigns) == dim(gex)[2])
+    # ===================================
+    helper.res <- packingRes(gex=gex, gsets=gene.sets, assigns.vec=assigns)
+    # =================================== 
+    if (n_gsts == 1) {
+        gini.score <- NULL
+        gini.min <- NULL
+        }
+    # ===================================  
+    # returns
+    sargent_obj <- new("sargentObject",
+                       cells=colnames(gex),
+                       cells_type=helper.res$assigns.ls,
+                       cells_state=cells.state,
+                       cells_score=cells.scrs,
+                       cells_gini=gini.score,
+                       gini_min=gini.min,
+                       threshold=ifelse(n_gsts > 1, gini.thr, score.threshold),
+                       celltype_summary=helper.res$summ.df)
+    # ===================================  
+    end_time <- Sys.time()
+    dt <- round(as.numeric(difftime(end_time, start_time, units = "mins")), 2)
+    message(paste("time:", dt, "min"))
+    message("+++++++++++++++++++++++++++++++++++")
+    # ===================================  
+    return(sargent_obj)
 }
 
 
@@ -327,7 +348,7 @@ trimAssignment <- function(cells.scrs, assigns.vec, cells.state,
 
 
 # Helper function to calculate scores for each cell
-scoreCells <- function(mat, gsets, gsets.neg=NULL) {
+scoreCells <- function(mat, gsets, witsets, gsets.neg=NULL) {
   message("calculating assignment scores...")
   # maxrank <- ceiling(maxrank * nrow(mat))
   # set.seed(12345)
@@ -335,14 +356,25 @@ scoreCells <- function(mat, gsets, gsets.neg=NULL) {
   # ===================================
   op <- pboptions(style=3, char="=")
   # ===================================
-  # sum(cumsum(head(y, maxrank) %in% gns)) 
+  # # sum(cumsum(head(y, maxrank) %in% gns)) 
+  # cells.scrs <- pblapply(cols_ls, function(x){
+  #   apply(mat[, x, drop = FALSE], 2, function(y){
+  #     y <- names(rev(sort(y[y > 0])))
+  #     vapply(gsets, function(gns) {
+  #       sum(cumsum(y %in% gns)) 
+  #     }, FUN.VALUE=numeric(1))
+  #   })
+  # })
   cells.scrs <- pblapply(cols_ls, function(x){
-    apply(mat[, x, drop = FALSE], 2, function(y){
-      y <- names(rev(sort(y[y > 0])))
-      vapply(gsets, function(gns) {
-        sum(cumsum(y %in% gns)) 
-      }, FUN.VALUE=numeric(1))
-    })
+      apply(mat[, x, drop = FALSE], 2, function(y){
+          y <- names(rev(sort(y[y > 0])))
+          z <- vapply(seq_along(gsets), function(i) {
+              gns <- gsets[[i]]
+              wits <- witsets[[i]]
+              sum(cumsum(dplyr::coalesce(as.integer(y %in% gns) * wits[match(y, gns)], 0)))
+          }, FUN.VALUE=numeric(1))
+          setNames(z, names(gsets))
+      })
   })
   # ===================================
   # sum(cumsum(head(y, maxrank) %in% gns)) 

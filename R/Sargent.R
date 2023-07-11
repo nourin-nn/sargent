@@ -45,7 +45,7 @@
 #' @import      ggplot2
 #' @import      methods
 #' @importFrom  ggdist      stat_slab stat_pointinterval
-#' @importFrom  dplyr       n %>% group_by ungroup
+#' @importFrom  dplyr       n %>% group_by ungroup coalesce
 #'                          filter select mutate summarize rename
 #' @importFrom  plyr        ldply
 #' @importFrom  igraph      graph_from_adjacency_matrix as_adjacency_matrix

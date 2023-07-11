@@ -1,7 +1,7 @@
 Package: sargent
 Type: Package
-Version: 1.0.0
-Date: 2023-05-03
+Version: 1.0.1
+Date: 2023-07-11
 Authors@R: 
     c(person("Nima", "Nouri", role=c("cre", "aut"), 
       email="nima.nouri@sanofi.com", comment=c(ORCID="0000-0001-8348-5717")))
@@ -27,7 +27,7 @@ Depends: R (>= 4.2.0), ggplot2 (>= 3.3.4)
 Imports: ggdist, dplyr (>= 1.0), igraph (>= 1.0), 
         Matrix, methods, rlang, stats, tibble, 
         tidyr (>= 1.0), DescTools, pbapply, plyr
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Collate:
     'Classes.R'
     'Core.R'
