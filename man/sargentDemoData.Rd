@@ -36,6 +36,9 @@ An object with the following items:
 \usage{
 data("sargentDemoData")
 }
+\value{
+An R object.
+}
 \description{
 A small example database subset from Tabula Sapiens Consortium, 2022.
 }

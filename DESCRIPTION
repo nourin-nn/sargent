@@ -4,7 +4,7 @@ Version: 1.0.1
 Date: 2023-07-11
 Authors@R: 
     c(person("Nima", "Nouri", role=c("cre", "aut"), 
-      email="nima.nouri@sanofi.com", comment=c(ORCID="0000-0001-8348-5717")))
+      email="ni.nouri@gmail.com", comment=c(ORCID="0000-0001-8348-5717")))
 Title: Single Cell Annotation
 Description: Single-cell RNA sequencing (scRNA-seq) experiments provide 
     opportunities to peer into the complex tissues at single-cell resolution. 

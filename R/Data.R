@@ -34,6 +34,8 @@
 #'                                      specific to TNK subset.
 #' }
 #' 
+#' @return An R object. 
+#' 
 #' @references
 #' \enumerate{
 #'   \item  Tabula Sapiens Consortium, et al. The Tabula Sapiens: 
