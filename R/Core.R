@@ -83,6 +83,30 @@ sargentAnnotation <- function(gex, gene.sets,
     stopifnot(all(lengths(witsets) == lengths(gene.sets)))
     # ===================================
     # checks
+    genes <- unique(unlist(gene.sets, use.names = FALSE)) 
+    if (sum(genes %in% rownames(gex)) == 0) {
+        msg <- "WARNING: None of the markers provided are present. All cells returned `unclassified`."
+        message(msg)
+        # ===================================  
+        # returns
+        sargent_obj <- new("sargentObject",
+                           cells=colnames(gex),
+                           cells_type=list("unclassified" = colnames(gex)),
+                           cells_state=NULL,
+                           cells_score=NULL,
+                           cells_gini=NULL,
+                           gini_min=NULL,
+                           threshold=NULL,
+                           celltype_summary=NULL)
+        # ===================================  
+        end_time <- Sys.time()
+        dt <- round(as.numeric(difftime(end_time, start_time, units = "mins")), 2)
+        message(paste("time:", dt, "min"))
+        message("+++++++++++++++++++++++++++++++++++")
+        # ===================================  
+        return(sargent_obj)
+    }
+    # ===================================  
     chk <- stop.checks(gex=gex, gsets=gene.sets)
     if (chk != TRUE) stop(chk)
     chk <- warning.checks(gsets=gene.sets)
@@ -135,6 +159,10 @@ sargentAnnotation <- function(gex, gene.sets,
         # returns
         score_obj <- new("scoreObject",
                          cells_score=cells.scrs)
+        # ===================================  
+        end_time <- Sys.time()
+        dt <- round(as.numeric(difftime(end_time, start_time, units = "mins")), 2)
+        message(paste("time:", dt, "min"))
         message("+++++++++++++++++++++++++++++++++++")
         return(score_obj)
     }
@@ -201,11 +229,11 @@ stop.checks <- function(gex, gsets) {
         return(msg)
     }
     # ===================================  
-    genes <- unique(unlist(gsets, use.names = FALSE)) 
-    if (sum(genes %in% rownames(gex)) == 0) {
-        msg <- "None of the gene markers are present."
-        return(msg)
-    }
+    # genes <- unique(unlist(gsets, use.names = FALSE)) 
+    # if (sum(genes %in% rownames(gex)) == 0) {
+    #     msg <- "None of the gene markers are present."
+    #     return(msg)
+    # }
     # ===================================  
     # obs.gsets <- lapply(gsets, function(x){ 
     #     x[x %in% rownames(gex)]

@@ -1,7 +1,7 @@
 Package: sargent
 Type: Package
 Version: 1.0.1
-Date: 2023-07-11
+Date: 2023-11-28
 Authors@R: 
     c(person("Nima", "Nouri", role=c("cre", "aut"), 
       email="ni.nouri@gmail.com", comment=c(ORCID="0000-0001-8348-5717")))

@@ -1,6 +1,7 @@
-Version 1.0.1:  July 11, 2023
+Version 1.0.1:  Nov 11, 2023
 -------------------------------------------------------------------------------
 
++ If none of the markers provided are present, all cells are returned unclassified.
 + Added weight functionality to markers gene set.
 
 

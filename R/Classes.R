@@ -3,6 +3,9 @@
 #### Generics ####
 
 setClassUnion("NumNULL", members=c("numeric", "NULL"))
+setClassUnion("CharNULL", members=c("character", "NULL"))
+setClassUnion("DfNULL", members=c("data.frame", "NULL"))
+setClassUnion("MtxNULL", members=c("matrix", "NULL"))
 
 
 #### Sargent classes ####
@@ -51,12 +54,12 @@ setClassUnion("NumNULL", members=c("numeric", "NULL"))
 setClass("sargentObject", 
          slots=c(cells="character",
                  cells_type="list",
-                 cells_state="character",
-                 cells_score="matrix",
+                 cells_state="CharNULL",
+                 cells_score="MtxNULL",
                  cells_gini="NumNULL",
                  gini_min="NumNULL",
-                 threshold="numeric",
-                 celltype_summary="data.frame"))
+                 threshold="NumNULL",
+                 celltype_summary="DfNULL"))
 
 
 #' S4 class defining scoreObject class
