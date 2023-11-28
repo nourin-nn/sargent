@@ -82,6 +82,27 @@ sargentAnnotation <- function(gex, gene.sets,
     })
     stopifnot(all(lengths(witsets) == lengths(gene.sets)))
     # ===================================
+    chk <- stop.checks(gex=gex, gsets=gene.sets)
+    if (chk != TRUE) stop(chk)
+    chk <- warning.checks(gsets=gene.sets)
+    if (chk != TRUE) warning(chk)
+    # ===================================
+    message("+++++++++++++++++++++++++++++++++++")
+    dims_i <- dim(gex)
+    if (!is.null(cells)) {
+        # keep cells
+        gex <- gex[, colnames(gex) %in% cells, drop = FALSE]
+        dims_f <- dim(gex)
+        message(dims_i[2] - dims_f[2], " cell(s) removed")
+        # remove any genes with zero expression
+        if (any(rowSums(gex) == 0)) {
+            gex <- gex[rowSums(gex) != 0, , drop = FALSE]
+            dims_f <- dim(gex)
+            message(dims_i[1] - dims_f[1], 
+                    " gene(s) removed. No expression across cells.")
+        }
+    }
+    # ===================================
     # checks
     genes <- unique(unlist(gene.sets, use.names = FALSE)) 
     if (sum(genes %in% rownames(gex)) == 0) {
@@ -105,27 +126,6 @@ sargentAnnotation <- function(gex, gene.sets,
         message("+++++++++++++++++++++++++++++++++++")
         # ===================================  
         return(sargent_obj)
-    }
-    # ===================================  
-    chk <- stop.checks(gex=gex, gsets=gene.sets)
-    if (chk != TRUE) stop(chk)
-    chk <- warning.checks(gsets=gene.sets)
-    if (chk != TRUE) warning(chk)
-    # ===================================
-    message("+++++++++++++++++++++++++++++++++++")
-    dims_i <- dim(gex)
-    if (!is.null(cells)) {
-        # keep cells
-        gex <- gex[, colnames(gex) %in% cells, drop = FALSE]
-        dims_f <- dim(gex)
-        message(dims_i[2] - dims_f[2], " cell(s) removed")
-        # remove any genes with zero expression
-        if (any(rowSums(gex) == 0)) {
-            gex <- gex[rowSums(gex) != 0, , drop = FALSE]
-            dims_f <- dim(gex)
-            message(dims_i[1] - dims_f[1], 
-                    " gene(s) removed. No expression across cells.")
-        }
     }
     # ===================================
     message("A matrix with ", 
