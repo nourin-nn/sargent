@@ -20,8 +20,7 @@ data based on sets of marker genes associated with cell types.
 if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 
-devtools::install_github("Sanofi-Public/PMCB-Sargent", 
-                         build_vignettes=FALSE)
+devtools::install_github('nourin-nn/sargent')
 ```
 
 If you wish to build a local version of the vignette use:
