@@ -33,7 +33,7 @@ if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("BiocStyle")
 
-devtools::install_github("Sanofi-Public/PMCB-Sargent", 
+devtools::install_github("nourin-nn/sargent", 
                          build_vignettes=TRUE)
 ```
 
@@ -45,7 +45,7 @@ Once installed the best place to get started is the [vignette][vignette].
 
 ## Contact
 
-For help and questions please contact the [sargent's maintenance team](mailto:nima.nouri@sanofi.com).
+For help and questions please contact the [sargent's maintenance team](mailto:ni.nouri@gmail.com).
 
 
 ## Citing Sargent
@@ -66,6 +66,6 @@ data", MethodsX, 2023, [doi:10.1016/j.mex.2023.102196][paper].
   }
 ```
 
-[vignette]: https://github.com/Sanofi-Public/PMCB-Sargent/blob/master/vignettes/Sargent-Vignette.Rmd
+[vignette]: https://github.com/nourin-nn/sargent/blob/master/vignettes/Sargent-Vignette.Rmd
 [bioc]: https://bioconductor.org/packages/devel/bioc/html/sargent.html
 [paper]: https://www.sciencedirect.com/science/article/pii/S2215016123001966
