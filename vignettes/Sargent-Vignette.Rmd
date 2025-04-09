@@ -34,7 +34,7 @@ Sargent can be installed from GitHub:
 if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 
-devtools::install_github("Sanofi-Public/PMCB-Sargent", 
+devtools::install_github("nourin-nn/sargent", 
                          build_vignettes=FALSE)
 ```
 
@@ -48,7 +48,7 @@ if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("BiocStyle")
 
-devtools::install_github("Sanofi-Public/PMCB-Sargent", 
+devtools::install_github("nourin-nn/sargent", 
                          build_vignettes=TRUE)
 ```
 
